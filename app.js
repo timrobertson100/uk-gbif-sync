@@ -6,7 +6,7 @@ sync.controller('DatasetController', ['$http', function($http) {
 
     var ukAPI = 'https://records-ws.nbnatlas.org/occurrences/search?q=*:*&facets=data_resource_uid&pageSize=0&facet=on&flimit=-1';
     var gbifDatasetSuggest ='http://api.gbif.org/v1/dataset/suggest?q=';
-    var gbifAPI ='http://api.gbif.org/v1/occurrence/count?datasetKey=';
+    var gbifAPI ='https://api.gbif.org/v1/occurrence/count?datasetKey=';
 
     self.datasets = [];
 
