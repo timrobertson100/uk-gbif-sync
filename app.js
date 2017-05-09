@@ -9,7 +9,7 @@ sync.controller('DatasetController', ['$http', function($http) {
     var ukAPI = 'https://records-ws.nbnatlas.org/occurrences/search?q=*:*&facets=data_resource_uid&pageSize=0&facet=on&flimit=-1';
     
     //var gbifDatasetSuggest ='https://api.gbif.org/v1/dataset/suggest?q=';
-    var gbifAPI ='http://api.gbif.org/v1/occurrence/count?datasetKey=';
+    var gbifAPI ='https://api.gbif.org/v1/occurrence/count?datasetKey=';
 
     self.datasets = [];
 
@@ -18,8 +18,9 @@ sync.controller('DatasetController', ['$http', function($http) {
 
         $http.get(apiResources).then(function (response) {
             self.datasets = response.data.facetResults[0].fieldResult;
-
+            
             angular.forEach(self.datasets, function(dataset) {
+            
                 
                 if (dataset.label != "Unknown") {
                 

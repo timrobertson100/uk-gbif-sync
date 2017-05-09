@@ -31,7 +31,7 @@
                 <th>GBIF</th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="dataset in datasetCtlr.datasets">                  
+                <tr ng-repeat="dataset in datasetCtlr.datasets" ng-if="dataset.label != 'Unknown'">                  
                     <td>
                       {{dataset.providerName}} <br/>
                       <a ng-if="dataset.gbifOrgKey != null" href="http://www.gbif.org/publisher/{{dataset.gbifOrgKey}}" target="_blank">GBIF</a>                        
