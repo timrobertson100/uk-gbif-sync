@@ -43,7 +43,7 @@
                       <a ng-if="dataset.gbifRegistryKey != null" href="http://www.gbif.org/dataset/{{dataset.gbifRegistryKey}}" target="_blank">GBIF</a> 
                       <a href="https://registry.nbnatlas.org/dataResource/show/{{dataset.id}}" target="_blank">UK</a>
                     </td>
-                    <td>{{dataset.count}}</td>
+                    <td ng-class="{'success':dataset.count==dataset.gbifCount, 'danger':dataset.count>dataset.gbifCount, 'warning':dataset.count<dataset.gbifCount }">{{dataset.count}}</td>
                     <td ng-class="{'success':dataset.count==dataset.gbifCount, 'danger':dataset.count>dataset.gbifCount, 'warning':dataset.count<dataset.gbifCount }">{{dataset.gbifCount}}</td>
                 </tr>
                 </tbody>
