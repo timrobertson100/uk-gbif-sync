@@ -44,7 +44,7 @@
                       <a href="https://registry.nbnatlas.org/dataResource/show/{{dataset.id}}" target="_blank">UK</a>
                     </td>
                     <td>{{dataset.count}}</td>
-                    <td ng-class="{'success':dataset.count==dataset.gbifCount, 'danger':dataset.count<dataset.gbifCount, 'warning':dataset.count>dataset.gbifCount }">{{dataset.gbifCount}}</td>
+                    <td ng-class="{'success':dataset.count==dataset.gbifCount, 'danger':dataset.count>dataset.gbifCount, 'warning':dataset.count<dataset.gbifCount }">{{dataset.gbifCount}}</td>
                 </tr>
                 </tbody>
             </table>
