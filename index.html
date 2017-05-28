@@ -6,12 +6,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
-<div class="container" id="main" ng-app="dataset">
+<div class="container" id="main" ng-app="dataset" ng-controller="DatasetController as datasetCtlr">
     <div class="page-header">
         <h1>UK GBIF Diagnostics</h1>
         <p class="lead">
             Compares counts from the UK Atlas API and the GBIF API to help prioritize data management effort.
         </p>
+        <small>
+          {{datasetCtlr.registeredDatasets}} of {{datasetCtlr.numDatasets}} registered. {{datasetCtlr.synced}} in sync, {{datasetCtlr.underSynced}} under-indexed, {{datasetCtlr.overSynced}} over-indexed
+        </small>
     </div>
     <div class="row">
         <div class="col-xs-12">
@@ -21,7 +24,7 @@
         </div>
     </div>
 
-    <div class="row" ng-controller="DatasetController as datasetCtlr">
+    <div class="row">
         <div class="col-xs-12">
             <table class="table table-striped table-bordered table-condensed">
                 <thead>

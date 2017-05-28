@@ -12,6 +12,11 @@ sync.controller('DatasetController', ['$http', function($http) {
     var gbifAPI ='https://api.gbif.org/v1/occurrence/count?datasetKey=';
 
     self.datasets = [];
+    self.numDatasets = 0;
+    self.registeredDatasets = 0;
+    self.synced = 0;
+    self.underSynced = 0;
+    self.overSynced = 0;
 
     // Call the UK API to get the list of datasets with counts
     var getDatasets = function() {
@@ -20,6 +25,7 @@ sync.controller('DatasetController', ['$http', function($http) {
             self.datasets = response.data.facetResults[0].fieldResult;
             
             angular.forEach(self.datasets, function(dataset) {
+                self.numDatasets++;
             
                 
                 if (dataset.label != "Unknown") {
@@ -44,12 +50,19 @@ sync.controller('DatasetController', ['$http', function($http) {
                   }
                   
                   if (dataset.gbifRegistryKey != null) {
+                    self.registeredDatasets++;
                     $http.get(gbifAPI + dataset.gbifRegistryKey).then(function (p) {
                       dataset.gbifCount = dataset.gbifCount=p.data;
+                  
+                     if (dataset.gbifCount == dataset.count) self.synced++;
+                     if (dataset.gbifCount < dataset.count) self.underSynced++;
+                     if (dataset.gbifCount > dataset.count) self.overSynced++;
+                                            
                     });                  
                   } else {
                     dataset.gbifCount = "-";                    
                   }
+                  
                   
                 });                
                 }
