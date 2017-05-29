@@ -9,7 +9,9 @@ sync.controller('DatasetController', ['$http', function($http) {
     var ukAPI = 'https://records-ws.nbnatlas.org/occurrences/search?q=*:*&facets=data_resource_uid&pageSize=0&facet=on&flimit=-1';
     
     //var gbifDatasetSuggest ='https://api.gbif.org/v1/dataset/suggest?q=';
-    var gbifAPI ='https://api.gbif.org/v1/occurrence/count?datasetKey=';
+    //var gbifAPI ='https://api.gbif.org/v1/occurrence/count?datasetKey=';
+    var gbifAPI ='https://api.gbif.org/v1/occurrence/search?limit=0&datasetKey=';
+    
 
     self.datasets = [];
     self.numDatasets = 0;
@@ -52,11 +54,16 @@ sync.controller('DatasetController', ['$http', function($http) {
                   if (dataset.gbifRegistryKey != null) {
                     self.registeredDatasets++;
                     $http.get(gbifAPI + dataset.gbifRegistryKey).then(function (p) {
-                      dataset.gbifCount = dataset.gbifCount=p.data;
+                      //dataset.gbifCount = p.data;
+                      dataset.gbifCount = p.data.count;
                   
                      if (dataset.gbifCount == dataset.count) self.synced++;
                      if (dataset.gbifCount < dataset.count) self.underSynced++;
                      if (dataset.gbifCount > dataset.count) self.overSynced++;
+                     
+                     if (dataset.gbifCount > dataset.count) {
+                       console.log(dataset.gbifRegistryKey + " has " + dataset.gbifCount + " instead of " + dataset.count)
+                     } 
                                             
                     });                  
                   } else {
