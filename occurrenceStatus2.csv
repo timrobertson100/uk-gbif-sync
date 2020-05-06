@@ -1,0 +1,2 @@
+v_occurrenceStatus,v_individualCount,occurrenceStatus,individualCount,OCCURRENCE_STATUS_INFERRED_FROM_INDIVIDUAL_COUNT,INDIVIDUAL_COUNT_CONFLICTS_WITH_OCCURRENCE_STATUS,INDIVIDUAL_COUNT_UNPARSABLE,UNBOUNDED_ABSENCE,hasPresence
+present,-,present,-,,,,,true
